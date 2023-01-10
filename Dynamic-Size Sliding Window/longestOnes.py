@@ -13,3 +13,27 @@ class Solution:
                         zeroCount -= 1
                     left += 1
         return maxLength
+
+# Official solution
+
+class Solution:
+    def longestOnes(self, nums, k):
+        if k == len(nums):
+            return k
+
+        windowStart = 0
+        longest = 0
+        zeros = 0
+
+        for windowEnd in range(len(nums)):
+            if nums[windowEnd] == 0:
+                zeros += 1
+
+            while zeros > k:
+                if nums[windowStart] == 0:
+                    zeros -= 1
+                windowStart += 1
+
+            longest = max(longest, windowEnd - windowStart + 1)
+
+        return longest
