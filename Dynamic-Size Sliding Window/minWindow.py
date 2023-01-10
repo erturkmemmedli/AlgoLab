@@ -25,3 +25,45 @@ class Solution:
                         del sMap[s[left]]
                 left += 1
         return substring
+
+# Official solution
+
+class Solution:
+    def minWindow(self, s, t):
+        freq = {}
+        for char in t:
+            if char not in freq:
+                freq[char] = 0
+            freq[char] += 1
+
+        matched = 0
+        minStart = 0
+        minLength = float("inf")
+        windowStart = 0
+
+        for windowEnd in range(len(s)):
+            char = s[windowEnd]
+
+            if char in freq:
+                freq[char] -= 1
+
+                if freq[char] == 0:
+                    matched += 1
+
+            while matched == len(freq):
+                windowSize = windowEnd - windowStart + 1
+                if windowSize < minLength:
+                    minLength = windowSize
+                    minStart = windowStart
+
+                remove = s[windowStart]
+
+                if remove in freq:
+                    if freq[remove] == 0:
+                        matched -= 1
+                    freq[remove] += 1
+                windowStart += 1
+
+        if minLength == float("inf"):
+            return ""
+        return s[minStart : minStart + minLength]
