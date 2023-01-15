@@ -3,11 +3,11 @@ class Solution:
         left, right = 0, len(nums) - 1
         while left < right:
             mid = left + (right - left) // 2
-            if len(nums) % 4 == 1:
+            if (right - left + 1) % 4 == 1:
                 if nums[mid] == nums[mid - 1]:
-                    right = mid + 1
+                    right = mid
                 elif nums[mid] == nums[mid + 1]:
-                    left = mid - 1
+                    left = mid
                 else:
                     return nums[mid]
             else:
