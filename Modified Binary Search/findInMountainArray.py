@@ -13,7 +13,7 @@ class Solution:
         if mountain_arr.get(index) == target:
             return index
         idx = self.binarySearch(target, mountain_arr, 0, index - 1, False)
-        return idx if idx != -1 else self.binarySearch(target, mountain_arr, index + 1, mountain_arr.length(), True)
+        return idx if idx != -1 else self.binarySearch(target, mountain_arr, index + 1, mountain_arr.length() - 1, True)
         
     def findPeakInMountainArray(self, mountain_arr):
         length = mountain_arr.length()
