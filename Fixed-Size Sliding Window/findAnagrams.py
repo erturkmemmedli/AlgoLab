@@ -33,7 +33,7 @@ class Solution:
                 headWindow += 1
         return anagrams
       
-# Official solution given
+# Official solution
       
 class Solution:
     def findAnagrams(self, s, p):
