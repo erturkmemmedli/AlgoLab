@@ -6,7 +6,7 @@ def findAverage(nums, k):
         output.append(windowAverage / k)
     return output
 	
-# Official solution given
+# Official solution
 
 def findAverage(nums, k):
     windowSum = sum(nums[:k])
