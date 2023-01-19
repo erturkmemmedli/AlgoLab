@@ -8,7 +8,7 @@ class Solution:
                 count += 1
         return count
       
-# Official solution given
+# Official solution
 
 class Solution:
     def numOfSubarrays(self, arr, k, threshold):
