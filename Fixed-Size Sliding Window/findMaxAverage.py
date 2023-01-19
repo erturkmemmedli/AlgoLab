@@ -8,7 +8,7 @@ class Solution:
             maxAverage = max(maxAverage, windowSum / k)
         return maxAverage
       
-# Official solution given
+# Official solution
 
 class Solution:
     def findMaxAverage(self, nums, k):
