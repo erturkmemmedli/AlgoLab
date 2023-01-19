@@ -23,7 +23,7 @@ class Solution:
                 return True
         return False
         
-# Official solution given
+# Official solution
 
 class Solution:
     def checkInclusion(self, s1: str, s2: str) -> bool:
