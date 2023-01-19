@@ -15,7 +15,7 @@ class Solution:
                 count += 1
         return count
         
-# Official solution given
+# Official solution
 
 class Solution:
     def numKLenSubstrNoRepeats(self, s: str, k: int) -> int:
