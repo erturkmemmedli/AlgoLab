@@ -10,7 +10,7 @@ class Solution:
                 point -= 1
         return point
       
-# Official solution given
+# Official solution
 
 class Solution:
     def dietPlanPerformance(self, calories, k, lower, upper):
