@@ -7,7 +7,7 @@ class Solution:
                 distinct += 1
         return distinct
       
-# Official solution given
+# Official solution
 
 class Solution:
     def countGoodSubstrings(self, s: str) -> int:
