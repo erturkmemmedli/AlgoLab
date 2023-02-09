@@ -22,13 +22,13 @@ class Solution:
     def minMeetingRooms(self, intervals):
         points = []
         for start, end in intervals:
-            points.append((start, 0))
-            points.append((end, 1))
-        points.sort(key = lambda x: x[0])
+            points.append((start, 1))
+            points.append((end, 0))
+        points.sort(key = lambda x: [x[0], x[1]])
         roomRequired = 0
         currentRoom = 0
-        for point, isEnd in points:
-            if not isEnd:
+        for point, isStart in points:
+            if isStart:
                 currentRoom += 1
             else:
                 currentRoom -= 1
