@@ -28,19 +28,13 @@ rooms[i][j] is -1, 0, or 2³¹ - 1.
 
 class Solution:
     def wallsAndGates(self, rooms):
-        """
-        Do not return anything, modify rooms in-place instead.
-        """
         m = len(rooms)
-        n = len(rooms[0])
-        
-        gates = []
-        
+        n = len(rooms[0])        
+        gates = [] 
         for i in range(m):
             for j in range(n):
                 if rooms[i][j] == 0:
                     gates.append((i, j))
-        
         for r, c in gates:
             for row, col in [r-1, c], [r, c-1], [r+1, c], [r, c+1]:
                 self.dfs(rooms, m, n, row, col, 0, set())
@@ -48,9 +42,7 @@ class Solution:
     def dfs(self, rooms, m, n, row, col, distance, visited):
         if m > row >= 0 <= col < n and rooms[row][col] != -1 and rooms[row][col] != 0 and (row, col) not in visited:
             visited.add((row, col))
-            
             rooms[row][col] = min(rooms[row][col], distance + 1)
-            
             self.dfs(rooms, m, n, row - 1, col, rooms[row][col], visited)
             self.dfs(rooms, m, n, row + 1, col, rooms[row][col], visited)
             self.dfs(rooms, m, n, row, col - 1, rooms[row][col], visited)
