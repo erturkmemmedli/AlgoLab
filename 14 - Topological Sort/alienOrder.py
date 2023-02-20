@@ -32,19 +32,20 @@ Constraints:
 words[i] consists of only lowercase English letters.
 '''
 
-from collections import defaultdict, deque
+from collections import deque
 
 class Solution:
     def alienOrder(self, words):        
-        self.alienDictionary = defaultdict(set)
+        self.letters = set()
+        
+        for word in words:
+            for letter in word:
+                self.letters.add(letter)
+        
+        self.alienDictionary = {letter: set() for letter in self.letters}        
+        self.inDegree = {letter: 0 for letter in self.letters} 
         
         self.checkLetters(words)
-        
-        self.inDegree = {key: 0 for key in self.alienDictionary.keys()}
-        
-        for val in self.alienDictionary.values():
-            for element in val:
-                self.inDegree[element] = self.inDegree.get(element, 0) + 1
         
         queue = deque([node for node, degree in self.inDegree.items() if degree == 0])
         
@@ -60,7 +61,7 @@ class Solution:
                 if self.inDegree[neighbor] == 0:
                     queue.append(neighbor)
                 
-        return "".join(alienAlphabet) if len(alienAlphabet) == len(self.inDegree) else ""
+        return "".join(alienAlphabet) if len(alienAlphabet) == len(self.letters) else ""
 
     def checkLetters(self, words):
         if not words or not words[0]:
@@ -77,6 +78,7 @@ class Solution:
                     self.checkLetters([word[1:] for word in check])
                     
                 self.alienDictionary[check[-1][0]].add(words[i][0])
+                self.inDegree[words[i][0]] += 1
                 check = [words[i]]
                 
         if len(check) > 1:
