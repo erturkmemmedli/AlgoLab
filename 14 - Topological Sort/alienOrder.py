@@ -43,12 +43,15 @@ class Solution:
                 self.letters.add(letter)
         
         self.alienDictionary = {letter: set() for letter in self.letters}        
-        self.inDegree = {letter: 0 for letter in self.letters} 
+        self.inDegree = {letter: 0 for letter in self.letters}
+        self.violation = False
         
         self.checkLetters(words)
         
-        queue = deque([node for node, degree in self.inDegree.items() if degree == 0])
+        if self.violation:
+            return ""
         
+        queue = deque([node for node, degree in self.inDegree.items() if degree == 0])
         alienAlphabet = []
         
         while queue:
@@ -64,7 +67,14 @@ class Solution:
         return "".join(alienAlphabet) if len(alienAlphabet) == len(self.letters) else ""
 
     def checkLetters(self, words):
-        if not words or not words[0]:
+        if not words:
+            return
+       
+        if not words[0]:
+            return self.checkLetters(words[1:])
+         
+        if any(word == "" for word in words):
+            self.violation = True
             return
         
         check = [words[0]]
@@ -76,6 +86,9 @@ class Solution:
             else:
                 if len(check) > 1:
                     self.checkLetters([word[1:] for word in check])
+                    
+                    if self.violation:
+                        return
                     
                 self.alienDictionary[check[-1][0]].add(words[i][0])
                 self.inDegree[words[i][0]] += 1
