@@ -3,7 +3,7 @@ class UnionFind:
         self.parent = [node for node in range(n)]
         
     def find(self, node):
-        if node != self.parent[node]:
+        while node != self.parent[node]:
             node = self.parent[node]
             
         return node
