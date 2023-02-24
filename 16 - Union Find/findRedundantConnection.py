@@ -26,3 +26,39 @@ class Solution:
         for a, b in edges:
             if not uf.union(a - 1, b - 1):
                 return [a, b]
+
+# Official solution
+
+class UnionFind:
+    def __init__(self, n):
+        self.parent = [node for node in range(n)]
+
+    def find(self, A):
+        while A != self.parent[A]:
+            A = self.parent[A]
+
+        return A
+
+    def union(self, A, B):
+        rootA = self.find(A)
+        rootB = self.find(B)
+
+        if rootA == rootB:
+            return False
+
+        self.parent[rootA] = rootB
+
+        return True
+
+
+class Solution(object):
+    def findRedundantConnection(self, edges):
+        unionFind = UnionFind(len(edges) + 1)
+
+        for edge in edges:
+            A, B = edge[0], edge[1]
+
+            if not unionFind.union(A, B):
+                return edge
+
+        return None
