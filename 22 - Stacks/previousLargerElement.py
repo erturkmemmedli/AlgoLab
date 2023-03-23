@@ -30,7 +30,7 @@ class Solution:
             while stack and stack[-1] <= arr[i]:
                 stack.pop()
                 
-            output[i] = stack[-1] if stack else  -1
+            output[i] = stack[-1] if stack else -1
             
             stack.append(arr[i])
             i += 1
