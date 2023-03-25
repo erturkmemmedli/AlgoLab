@@ -10,9 +10,11 @@ class Solution:
 
             while stack and stack[-1][0] >= heights[i]:
                 h, w = stack.pop()
+                
                 if stack and stack[-1][0] >= heights[i]:
                     stack[-1] = [min(stack[-1][0], h), stack[-1][1] + w]
                     max_area = max(max_area, stack[-1][0] * stack[-1][1])
+                    
                 else:
                     width += w
                     max_area = max(max_area, min(h, heights[i]) * width)
